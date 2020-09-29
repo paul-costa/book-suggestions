@@ -1,5 +1,7 @@
 {
   "name": "book-suggestions",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Saved Books</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment (ionChange)="onChangeView()">
+    <ion-segment-button value="all" checked>All Books</ion-segment-button>
+    <ion-segment-button value="genre">By Genre</ion-segment-button>
+  </ion-segment>
+
+  <ion-grid>
+    <ion-row *ngIf="savedBooks.length >=0 && showAllBooks">
+      <ion-col [size]="!savedBook.expanded ? 6 : 12" *ngFor="let savedBook of savedBooks">
+        <ion-card class="ion-text-center" (click)="onShowBookDetail(savedBook.id)">
+          
+          <ion-img  *ngIf="!savedBook.expanded && !savedBook.transitionOnGoing" class="ion-padding" [src]="savedBook.imageUrl"></ion-img>
+
+          <ion-card-title *ngIf="savedBook.expanded && !savedBook.transitionOnGoing">{{savedBook.title}}</ion-card-title>
+          <ion-card-subtitle  *ngIf="savedBook.expanded && !savedBook.transitionOnGoing">
+            <div *ngFor="let author of savedBook.authors">{{author.name}} </div>
+          </ion-card-subtitle>
+
+          <ion-card-content class="ion-text-left ion-padding" *ngIf="savedBook.expanded && !savedBook.transitionOnGoing">
+            <div>Published: {{savedBook.pubDay}}.{{savedBook.pubMonth}}.{{savedBook.pubYear}} by {{savedBook.publisher}}</div>
+          </ion-card-content>
+
+          <ion-spinner *ngIf="savedBook.transitionOnGoing" name="dots"></ion-spinner>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="savedBooks.length==0">
+      <ion-col size="12" class="ion-text-center ion-padding">
+          <ion-text>Currently you have no books saved. Try adding some and then come again.</ion-text>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <ion-list *ngIf="savedBooks.length >=0 && !showAllBooks">
+    <ion-item button *ngFor="let genre of savedGenres" (click)="openGenre(genre)" detail>
+      <ion-label>{{genre | titlecase}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

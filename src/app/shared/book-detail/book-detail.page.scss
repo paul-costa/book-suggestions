@@ -1,0 +1,36 @@
+ion-badge {
+    margin: 0 0.25em;
+}
+
+
+/* credit: https://forum.ionicframework.com/u/onion2k/summary */
+.title {
+	overflow: hidden;
+	margin-left: 0px;
+
+    animation-name: title_scroller;
+    animation-duration: 6s;
+    animation-delay: 1s;
+    animation-direction: alternate;
+   	animation-iteration-count:2;
+    animation-fill-mode: both;
+    transition-timing-function: linear;
+
+    -webkit-animation-name: title_scroller;
+    -webkit-animation-duration: 6s;
+    -webkit-animation-delay: 1s;
+    -webkit-animation-direction: alternate;
+    -webkit-animation-iteration-count:2; 
+    -webkit-animation-fill-mode: both;
+    -webkit-transition-timing-function: linear;
+}
+
+@keyframes title_scroller {
+    0% { margin-left: 0; } 
+    100% { margin-left: -150px; }
+}
+
+@-webkit-keyframes title_scroller { 
+    0% { margin-left: 0; } 
+    100% { margin-left: -150px; }
+} 

@@ -1,15 +1,22 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
-];
+  { path: '', redirectTo: 'suggestions', pathMatch: 'full' },
 
+  {
+    path: 'suggestions',
+    loadChildren: () => import('./suggestions/suggestions.module').then(mod => mod.SuggestionsPageModule),
+  },
+
+  {
+    path: 'shared/book-detail/:bookId',
+    loadChildren: () => import('./shared/book-detail/book-detail.module').then(mod => mod.BookDetailPageModule),
+  }
+];
+ 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

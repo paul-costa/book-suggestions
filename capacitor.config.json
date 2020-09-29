@@ -1,0 +1,8 @@
+{
+  "appId": "at.paulcosta",
+  "appName": "suggest-book",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}
